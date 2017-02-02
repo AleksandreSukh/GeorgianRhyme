@@ -31,11 +31,15 @@ namespace GeorgianLanguageClasses
             return new string(charArray);
         }
 
-        static readonly string availableCharsInGeorgianWord = GeorgianAlphabet.Alpabet + '-';
+        const string enabledSymbol = "-";
+        static readonly string availableCharsInGeorgianWord = GeorgianAlphabet.Alpabet + enabledSymbol;
         public static bool IsGeorgianWord(this string word)
         {
             return word.Length > 1 && word.Length < 30
                 && word.All(c => availableCharsInGeorgianWord.Contains(c))
+                && !word.EndsWith(enabledSymbol, StringComparison.InvariantCulture)
+                && !word.StartsWith(enabledSymbol, StringComparison.InvariantCulture)
+                && word.Any(c=>c.IsVowel())
                 && !IncludesThreeSameConsonantsFollowing(word)
                 && !IncludesFourSameVowelsFollowing(word);
         }
