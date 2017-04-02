@@ -1,7 +1,8 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using GeorgianLanguageClasses;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Shouldly;
 
-namespace GeorgianLanguageClasses.Tests
+namespace GeorgianLanguageClassesTests
 {
     [TestClass()]
     public class SyllableSplitterTests

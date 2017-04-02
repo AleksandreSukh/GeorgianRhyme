@@ -1,14 +1,12 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using GeorgianLanguageClasses;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using GeorgianLanguageClasses;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Shouldly;
 
-namespace GeorgianLanguageClasses.Tests
+namespace GeorgianLanguageClassesTests
 {
+
     [TestClass()]
     public class GeoWordMatcherTests
     {

@@ -11,7 +11,7 @@ namespace GeorgianLanguageClasses
     {
         public static string[] Syllables(this string word, bool checkedGeorgian = false)
         {
-            if (!checkedGeorgian && word.IsGeorgianWord()) throw new ArgumentException($"Word:{word} is not a valid georgian word");
+            if (!checkedGeorgian && !word.IsGeorgianWord()) throw new ArgumentException($"Word:{word} is not a valid georgian word");
             return word.Split(' ', '-').SelectMany(SyllablesFromFiltered).ToArray();
         }
 
