@@ -5,6 +5,7 @@ namespace GeorgianLanguageClasses.WordModel
 {
     public struct Word : IEquatable<Word>
     {
+        private readonly TypedWordPart[] Parts;
         public Word(params TypedWordPart[] parts)
         {
             if (parts.Count(p => p.Type == TypedWordPart.WordPartType.Stem) != 1)
@@ -20,6 +21,7 @@ namespace GeorgianLanguageClasses.WordModel
                     throw new InvalidOperationException($"{nameof(TypedWordPart)}s should be passed with following type order Prefix,Stem,Suffix");
             }
             var val = string.Empty;
+            Parts = parts;
             foreach (var part in parts)
             {
                 val += part.WordPart.TextValue.StringValue;
@@ -30,5 +32,19 @@ namespace GeorgianLanguageClasses.WordModel
         public Text TextValue { get; }
 
         public bool Equals(Word other) => Equals(TextValue, other.TextValue);
+    }
+
+    public enum MetyvelebisNawili
+    {
+        არსებითი_სახელი,
+        ზედსართავი_სახელი,
+        რიცხვითი_სახელი,
+        ნაცვალსახელი,
+        ზმნა,
+        ზმნიზედა,
+        თანდებული,
+        კავშირი,
+        ნაწილაკი,
+        შორისდებული
     }
 }

@@ -34,7 +34,18 @@ namespace GeorgianLanguageClassesTests
         [TestMethod()]
         public void HowMatchStringsTest()
         {
-            GeoWordMatcher.EvaluateRhymeSimilarity("ფინჯანი ყავა", "ფინჯანი");
+            GeoWordMatcher.EvaluateRhymeSimilarity("ფინჯანი", "ფინჯანი").ShouldBe(1);
+            GeoWordMatcher.EvaluateRhymeSimilarity("კატა კლიზმები", "კატა კლიზმები").ShouldBe(1);
+
+        }
+        [TestMethod()]
+        public void bidirectionally()
+        {
+            var dir1 =
+                GeoWordMatcher.EvaluateRhymeSimilarity("ფინჯანი ყავა", "ფინჯანი");
+            var dir2 =
+                GeoWordMatcher.EvaluateRhymeSimilarity("ფინჯანი", "ფინჯანი ყავა");
+            dir1.ShouldBe(dir2);
         }
         [TestMethod()]
         public void HowMatchStringsTest2()
@@ -60,7 +71,7 @@ namespace GeorgianLanguageClassesTests
         [TestMethod()]
         public void HowMatchStringsTest1()
         {
-            GeoWordMatcher.EvaluateRhymeSimilarity("სანდრო","სანდრო").ShouldBe(100);
+            GeoWordMatcher.EvaluateRhymeSimilarity("სანდრო","სანდრო").ShouldBe(1);
         }
     }
 }

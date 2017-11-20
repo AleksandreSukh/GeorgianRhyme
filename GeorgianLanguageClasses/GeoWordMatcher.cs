@@ -29,6 +29,17 @@ namespace GeorgianLanguageClasses
                 if (!str1.Split(' ').All(w => w.IsGeorgianWord())) throw new ArgumentException($"Word:{str1} is not a valid georgian word");
                 if (!str2.Split(' ').All(w => w.IsGeorgianWord())) throw new ArgumentException($"Word:{str2} is not a valid georgian word");
             }
+            //Sort strings
+            var arr = new string[2] { str1, str2 }.OrderBy(s => s).ToArray();
+
+            str1 = arr[0];
+            str2 = arr[1];
+            return SyllableComparisonResult(str1, str2) / SyllableComparisonResult(str1, str1);
+        }
+
+        private static double SyllableComparisonResult(string str1, string str2)
+        {
+
             var syll1 = str1.Syllables(true);
             var syll2 = str2.Syllables(true);
             var minSyllableLength = Math.Min(syll1.Length, syll2.Length);
@@ -38,7 +49,7 @@ namespace GeorgianLanguageClasses
 
             for (int i = 0; i < minSyllableLength; i++)
             {
-                coeficients[i] = nominalCoeficient/settings.SyllableLocationAwarePortionEvaluator(i);
+                coeficients[i] = nominalCoeficient / settings.SyllableLocationAwarePortionEvaluator(i);
             }
 
             double comparisonResult = 0;
