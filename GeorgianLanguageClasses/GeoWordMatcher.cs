@@ -34,7 +34,9 @@ namespace GeorgianLanguageClasses
 
             str1 = arr[0];
             str2 = arr[1];
-            return SyllableComparisonResult(str1, str2) / SyllableComparisonResult(str1, str1);
+
+            var lengthy = str1.Length > str2.Length ? str1 : str2;
+            return SyllableComparisonResult(str1, str2) / SyllableComparisonResult(lengthy, lengthy);
         }
 
         private static double SyllableComparisonResult(string str1, string str2)
